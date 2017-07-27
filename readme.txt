@@ -10,4 +10,7 @@ serviceribbon：
     实现了负载均衡和容错机制
 
 apigateway：
-    实现网关的功能
+    实现网关的功能 ，加入zuul依赖，并加入eureka依赖把自身注册到服务注册中心
+    实现了路由映射：/hi/**  ->   serivce-hi
+    输入url: localhost:8765/hi/hi?name=xxxx  即调用了 service-hi服务的 /hi?name=xxx接口
+    （localhost:8763/hi?name=xxxx）
