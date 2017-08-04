@@ -15,6 +15,8 @@ public class HelloService {
 
     @HystrixCommand(fallbackMethod = "hiError")
     public String hiService(String name){
+        // RestTemplate向外部发送GWT请求，
+        // url: http://SERVICE-HI/hi?name=name   返回类型为String
         return restTemplate.getForObject("http://SERVICE-HI/hi?name="+name,String.class);
     }
 

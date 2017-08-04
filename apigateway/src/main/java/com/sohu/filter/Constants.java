@@ -21,5 +21,5 @@ public class Constants {
      * 接口调用时间与当前系统时间的默认最大时间差
      * 默认150s（150000 ms）
      */
-    static final long DEFAULT_TIME_DIFFERENCE = 150000;
+    static final long DEFAULT_TIME_DIFFERENCE = 1500000;
 }

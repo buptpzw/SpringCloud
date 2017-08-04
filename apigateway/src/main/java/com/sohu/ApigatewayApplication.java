@@ -4,6 +4,7 @@ package com.sohu;
 import com.netflix.zuul.ZuulFilter;
 import com.sohu.filter.ApiAuthFilter;
 import com.sohu.filter.ApiRateLimitFilter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 @EnableZuulProxy
 @EnableEurekaClient
 @SpringBootApplication
+@MapperScan("com.sohu.mapper")
 public class ApigatewayApplication {
 	@Bean
 	public ZuulFilter apiAuthFilter(){

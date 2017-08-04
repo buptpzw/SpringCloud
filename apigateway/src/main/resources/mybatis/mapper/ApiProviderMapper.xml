@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sohu.mapper.ApiProviderMapper" >
+
+    <resultMap id="BaseResultMap" type="ApiProvider">
+        <id column="id" property="id" javaType="Long" jdbcType="BIGINT"/>
+        <result column="service_id" property="serviceName" javaType="String" jdbcType="VARCHAR"/>
+        <result column="api_name" property="apiName" javaType="String" jdbcType="VARCHAR"/>
+        <result column="designed_rate" property="designedRate" javaType="Integer" jdbcType="INTEGER"/>
+        <result column="description" property="description" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_column_list">
+        id, service_id,api_name,designed_rate,description
+    </sql>
+
+    <!--根据id查询sevice（provider）-->
+    <select id="selectProviderById" parameterType="Long" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM
+        api_service
+        WHERE
+        id=#{id}
+    </select>
+
+    <!--根据apiName查询service（provider）-->
+    <select id="selectProviderByApiName" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM
+        api_service
+        WHERE
+        api_name=#{apiName}
+    </select>
+
+    <!--根据apiName查询sevice的ID-->
+    <select id="selectIdByApiName" parameterType="String" resultType="long">
+        SELECT
+        id
+        FROM
+        api_service
+        WHERE
+        api_name=#{apiName}
+    </select>
+
+    <!--插入sevice-->
+    <insert id="insertProvider" parameterType="ApiProvider">
+        INSERT INTO
+        api_service
+        (serivce_id,api_name,designed_rate,description)
+        VALUES
+        (#{serviceName},#{apiName},#{designedRate},#{description})
+    </insert>
+
+    <!--更新sevice-->
+    <update id="updateProvider" parameterType="ApiProvider">
+        UPDATE
+        api_service
+        SET
+        <if test="service_id != null">service_id=#{serviceName}</if>
+        <if test="api_name != null">api_name=#{apiName}</if>
+        <if test="designed_rate != null">designed_rate=#{designed_rate}</if>
+        <if test="description != null">description=#{description}</if>
+    </update>
+
+    <!--根据id删除sevice-->
+    <delete id="deleteById" parameterType="Long" >
+        DELETE
+        api_service
+        WHERE
+        id = #{id}
+    </delete>
+
+</mapper>
